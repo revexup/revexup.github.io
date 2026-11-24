@@ -45,7 +45,7 @@ code,kbd{font-family:var(--maquina);font-size:.92em}
 .fine{font-size:.88rem;color:var(--tinta-3)}
 .tnum{font-variant-numeric:tabular-nums}
 /* lo que se llena solo: tinta de máquina sobre el renglón de la forma */
-.hl,.llena{font-family:var(--maquina);font-weight:700;color:var(--azul);letter-spacing:-.045em;font-size:.94em;padding:0 .06em;
+.hl,.llena{font-family:var(--maquina);font-weight:700;color:var(--azul);letter-spacing:-.04em;font-size:.94em;padding:0 .06em;
   background:linear-gradient(var(--verde),var(--verde)) 0 100%/100% 2px no-repeat;-webkit-box-decoration-break:clone;box-decoration-break:clone}
 .pluma{font-family:var(--pluma);color:var(--boli);line-height:1.15}
 
