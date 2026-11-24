@@ -23,6 +23,9 @@
       "CHA-1": ["Caja chalupa galvanizada", 9.8],
       "INT-20": ["Interruptor termomagnético 20 A", 185]
     };
+    // En la página de un prospecto (/para/…) el catálogo de su giro viene en un JSON dentro de la página.
+    var propio = document.getElementById("cat-demo");
+    if (propio) { try { CAT = JSON.parse(propio.textContent); } catch (e) { /* se queda el de ejemplo */ } }
     var IVA = 0.16;
     var money = new Intl.NumberFormat("es-MX", { style: "currency", currency: "MXN", minimumFractionDigits: 2 });
     var ref = sheet.querySelector(".t-fx .ref"), fx = sheet.querySelector(".t-fx .f");

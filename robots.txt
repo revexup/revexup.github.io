@@ -3,5 +3,6 @@ Allow: /
 Disallow: /r/
 Disallow: /gracias/
 Disallow: /descargas/
+Disallow: /para/
 
 Sitemap: https://revexup.com/sitemap.xml
