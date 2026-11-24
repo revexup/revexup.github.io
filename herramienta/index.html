@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Generador de código QR para reseñas de Google (gratis, sin registro) · Revexup</title>
+<meta name="description" content="Crea gratis el código QR y el link para que tus clientes te dejen reseña en Google. Incluye póster para imprimir y mensajes listos para WhatsApp. Sin registro.">
+<link rel="canonical" href="https://revexup.com/herramienta/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Generador gratis de QR para reseñas de Google">
+<meta property="og:description" content="Tu QR, tu póster para imprimir y mensajes de WhatsApp para pedir reseñas. Gratis y sin registro.">
+<meta property="og:url" content="https://revexup.com/herramienta/">
+<meta property="og:image" content="https://revexup.com/assets/img/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+{"@type":"WebApplication","name":"Generador de QR para reseñas de Google","url":"https://revexup.com/herramienta/","applicationCategory":"BusinessApplication","operatingSystem":"Web","inLanguage":"es","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"Revexup","url":"https://revexup.com/"}},
+{"@type":"HowTo","name":"Cómo crear un código QR para reseñas de Google","step":[
+ {"@type":"HowToStep","name":"Copia tu enlace de reseñas","text":"En Google, busca tu negocio, entra a tu perfil y toca 'Pedir reseñas'. Copia el enlace."},
+ {"@type":"HowToStep","name":"Pégalo en el generador","text":"Pega el enlace y escribe el nombre de tu negocio."},
+ {"@type":"HowToStep","name":"Descarga e imprime","text":"Descarga el QR o imprime el póster y colócalo en tu mostrador."}]},
+{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Inicio","item":"https://revexup.com/"},{"@type":"ListItem","position":2,"name":"Generador de QR para reseñas","item":"https://revexup.com/herramienta/"}]}
+]}
+</script>
+<script src="/assets/js/config.js" defer></script>
+<script src="/assets/js/qrcode.js" defer></script>
+<script src="/assets/js/tool.js" defer></script>
+<script>document.documentElement.classList.add("js")</script>
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<meta name="theme-color" content="#0E6B4F">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Figtree:wght@400;500;600;700;800&family=Fraunces:opsz,wght,SOFT@9..144,500..700,50&family=JetBrains+Mono:wght@500;600&display=swap">
+<link rel="stylesheet" href="/assets/css/main.css?v=20261124d">
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <a class="logo" href="/" aria-label="Revexup, ir al inicio"><img src="/assets/img/favicon.svg" width="34" height="34" alt=""><span>revexup</span></a>
+  <nav class="nav" aria-label="Principal"><a href="/plantillas/">Plantillas</a><a href="/#a-medida">A la medida</a><a href="/guias/">Guías</a><a href="/#preguntas">Preguntas</a></nav>
+  <a class="btn btn-primary btn-sm nav-cta" href="/#a-medida">Pedir demo gratis</a>
+  <details class="menu"><summary aria-label="Abrir menú"><span></span></summary>
+    <div class="menu-panel"><a href="/plantillas/">Plantillas</a><a href="/#a-medida">A la medida</a><a href="/guias/">Guías</a><a href="/#preguntas">Preguntas</a><a class="btn btn-primary" href="/#a-medida">Pedir demo gratis</a></div>
+  </details>
+</div></header>
+
+<main>
+<section style="padding-top:48px"><div class="wrap">
+  <div class="no-print">
+    <div class="crumbs"><a href="/">Inicio</a> › Generador de QR para reseñas</div>
+    <span class="eyebrow">Gratis · sin registro</span>
+    <h1>Generador de código QR para reseñas de Google</h1>
+    <p class="lead" style="max-width:62ch">Pega tu enlace de reseñas y en segundos tienes tu QR, un póster listo para imprimir y mensajes para pedir reseñas por WhatsApp.</p>
+  </div>
+
+  <div class="tool-grid" style="margin-top:28px">
+    <form class="card tool-form" id="f" autocomplete="off" novalidate>
+      <label for="biz">Nombre de tu negocio</label>
+      <input id="biz" name="biz" placeholder="Ej. Clínica Dental Sonrisa" maxlength="60" required>
+
+      <label for="link">Tu enlace de reseñas de Google (o tu Place ID)</label>
+      <input id="link" name="link" placeholder="https://g.page/r/... o ChIJ..." required>
+      <p class="hint">¿No lo tienes? <a href="#como-obtener">Así lo sacas en 1 minuto</a>.</p>
+
+      <label for="giro">Tipo de negocio</label>
+      <select id="giro" name="giro">
+        <option value="general">Otro / general</option>
+        <option value="restaurante">Restaurante, café o bar</option>
+        <option value="salud">Clínica, dentista o consultorio</option>
+        <option value="taller">Taller mecánico o servicio automotriz</option>
+        <option value="belleza">Salón, barbería o spa</option>
+        <option value="tienda">Tienda o comercio</option>
+        <option value="servicios">Servicios profesionales (abogado, contador, etc.)</option>
+        <option value="hogar">Servicios a domicilio (plomería, limpieza, etc.)</option>
+      </select>
+
+      <label for="trato">¿Cómo le hablas a tus clientes?</label>
+      <select id="trato" name="trato">
+        <option value="usted">De usted</option>
+        <option value="tu">De tú</option>
+      </select>
+
+      <div class="cta-row"><button class="btn btn-primary" type="submit" style="width:100%">Crear mi QR</button></div>
+      <p class="error hidden" id="err" role="alert"></p>
+      <p class="fine">Todo se genera en tu navegador. No guardamos tus datos.</p>
+    </form>
+
+    <div>
+      <div class="card no-print" id="empty">
+        <h3>Así queda</h3>
+        <p class="muted">Llena los datos y aquí aparecerá tu QR, tu póster y tus mensajes.</p>
+      </div>
+
+      <div id="out" class="hidden">
+        <div class="tabs no-print" role="tablist">
+          <button type="button" data-theme="t-light" aria-selected="true">Claro</button>
+          <button type="button" data-theme="t-dark" aria-selected="false">Oscuro</button>
+          <button type="button" data-theme="t-brand" aria-selected="false">Color</button>
+        </div>
+        <div class="print-area">
+          <div class="poster t-light" id="poster">
+            <div class="stars" style="font-size:1.6rem">★★★★★</div>
+            <div class="p-title" id="pTitle">¿Le gustó su visita?</div>
+            <div class="p-biz" id="pBiz"></div>
+            <div class="p-qr" id="qr"></div>
+            <div class="p-steps" id="pSteps">Abra la cámara, apunte al código y toque las estrellas. Tarda 10 segundos.<br><b>¡Gracias!</b></div>
+          </div>
+        </div>
+        <div class="msg-actions no-print" style="justify-content:center;margin-top:16px">
+          <button class="btn btn-primary btn-sm" type="button" id="print">Imprimir póster</button>
+          <button class="btn btn-ghost btn-sm" type="button" id="png">Descargar QR (PNG)</button>
+          <button class="btn btn-ghost btn-sm" type="button" id="svg">Descargar QR (SVG)</button>
+          <button class="btn btn-ghost btn-sm" type="button" id="copyLink">Copiar enlace</button>
+        </div>
+        <p class="fine center no-print" style="margin-top:8px">Prueba el QR con tu celular antes de imprimir. Tamaño mínimo recomendado: 3 × 3 cm.</p>
+
+        <div class="card no-print" style="margin-top:24px">
+          <h3>Mensajes para pedir reseña por WhatsApp</h3>
+          <p class="muted">Mándalo el mismo día, cuando el cliente aún recuerda la experiencia.</p>
+          <div id="msgs"></div>
+        </div>
+
+        <div class="cta-box no-print">
+          <h3 style="color:#fff">¿Prefieres que te lo dejemos funcionando?</h3>
+          <p>QR permanente que nunca se rompe, 3 diseños con tu logo, respuestas redactadas para tus reseñas sin contestar y revisión de tu ficha. En 24 h, con garantía de 30 días.</p>
+          <a class="btn btn-primary" href="/#precios">Verlo por USD 29</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div></section>
+
+<section class="alt no-print" id="como-obtener"><div class="wrap narrow article">
+  <h2>Cómo obtener tu enlace de reseñas de Google</h2>
+  <h3>Opción 1: desde tu perfil de empresa (la más fácil)</h3>
+  <ol>
+    <li>Entra a Google (o a la app de Google Maps) con la cuenta que administra tu negocio.</li>
+    <li>Busca el nombre de tu negocio. Arriba aparece tu panel de perfil de empresa.</li>
+    <li>Toca <b>"Pedir reseñas"</b> (o "Obtener más reseñas").</li>
+    <li>Copia el enlace que te muestra (suele empezar con <code>https://g.page/r/</code>) y pégalo arriba.</li>
+  </ol>
+  <h3>Opción 2: con tu Place ID</h3>
+  <ol>
+    <li>Abre el <a href="https://developers.google.com/maps/documentation/places/web-service/place-id" rel="noopener" target="_blank">buscador de Place ID de Google</a>.</li>
+    <li>Escribe el nombre de tu negocio y elígelo en el mapa.</li>
+    <li>Copia el código que empieza con <code>ChIJ</code> y pégalo arriba. El generador arma el enlace por ti.</li>
+  </ol>
+  <p>Guía completa: <a href="/guias/link-resenas-google/">cómo sacar el link de reseñas de Google paso a paso</a>.</p>
+
+  <h2>Preguntas frecuentes</h2>
+  <details><summary>¿El QR caduca?</summary><p>El QR no caduca: apunta a tu enlace de reseñas. Si un día Google cambia tu enlace, tendrías que crear otro QR y reimprimir. Con el plan hecho para ti usamos un QR permanente (revexup.com/r/tu-negocio) que actualizamos sin reimprimir nada.</p></details>
+  <details><summary>¿Puedo pedir reseñas solo a los clientes contentos?</summary><p>No conviene: Google prohíbe filtrar a quién se le pide reseña. Pídesela a todos por igual; si haces bien tu trabajo, la mayoría serán de 5 estrellas.</p></details>
+  <details><summary>¿Puedo dar un descuento a cambio de la reseña?</summary><p>No. Google no permite ofrecer incentivos a cambio de reseñas. Lo que sí funciona es pedirla en el momento justo y ponerlo muy fácil.</p></details>
+</div></section>
+</main>
+
+<footer class="no-print"><div class="wrap">
+  <div><b>Revexup</b> · Reseñas reales para negocios locales<br>© <span id="year">2026</span> Revexup</div>
+  <div><a href="/">Inicio</a><a href="/guias/">Guías</a><a data-mail="Consulta Revexup" href="#">Contacto</a><a href="/privacidad/">Privacidad</a></div>
+</div></footer>
+</body>
+</html>

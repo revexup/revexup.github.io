@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Control de inventario en Excel con fórmulas: entradas, salidas y punto de reorden</title>
+<meta name="description" content="Cómo llevar el inventario en Excel con una hoja de movimientos: existencia automática con SUMAR.SI.CONJUNTO, alerta de stock mínimo y punto de reorden según tu consumo real.">
+<link rel="canonical" href="https://revexup.com/guias/inventario-en-excel-formulas/">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Revexup">
+<meta property="og:locale" content="es_LA">
+<meta property="og:title" content="Control de inventario en Excel con fórmulas: entradas, salidas y punto de reorden">
+<meta property="og:description" content="Cómo llevar el inventario en Excel con una hoja de movimientos: existencia automática con SUMAR.SI.CONJUNTO, alerta de stock mínimo y punto de reorden según tu consumo real.">
+<meta property="og:url" content="https://revexup.com/guias/inventario-en-excel-formulas/">
+<meta property="og:image" content="https://revexup.com/assets/img/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Article", "headline": "Control de inventario en Excel: entradas, salidas y punto de reorden", "description": "Cómo llevar el inventario en Excel con una hoja de movimientos: existencia automática con SUMAR.SI.CONJUNTO, alerta de stock mínimo y punto de reorden según tu consumo real.", "inLanguage": "es", "datePublished": "2026-11-24", "dateModified": "2026-11-24", "mainEntityOfPage": "https://revexup.com/guias/inventario-en-excel-formulas/", "author": {"@type": "Organization", "name": "Revexup", "url": "https://revexup.com/"}, "publisher": {"@type": "Organization", "name": "Revexup", "logo": {"@type": "ImageObject", "url": "https://revexup.com/assets/img/favicon.svg"}}}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://revexup.com/"}, {"@type": "ListItem", "position": 2, "name": "Guías", "item": "https://revexup.com/guias/"}, {"@type": "ListItem", "position": 3, "name": "Control de inventario en Excel: entradas, salidas y punto de reorden", "item": "https://revexup.com/guias/inventario-en-excel-formulas/"}]}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "¿Por qué no escribir la existencia directamente?", "acceptedAnswer": {"@type": "Answer", "text": "Porque no queda rastro: si el número está mal, no sabes cuándo ni por qué. Con movimientos, la existencia siempre se puede explicar."}}, {"@type": "Question", "name": "¿Cuántos movimientos aguanta?", "acceptedAnswer": {"@type": "Answer", "text": "Decenas de miles sin problema. Si llegas a cientos de miles, conviene archivar los años anteriores en otro archivo."}}, {"@type": "Question", "name": "¿Sirve para varios almacenes?", "acceptedAnswer": {"@type": "Answer", "text": "Sí: agrega una columna Almacén a Movimientos y un criterio más a SUMAR.SI.CONJUNTO."}}]}]}</script>
+<script src="/assets/js/config.js" defer></script>
+<script>document.documentElement.classList.add("js")</script>
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<meta name="theme-color" content="#0E6B4F">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Figtree:wght@400;500;600;700;800&family=Fraunces:opsz,wght,SOFT@9..144,500..700,50&family=JetBrains+Mono:wght@500;600&display=swap">
+<link rel="stylesheet" href="/assets/css/main.css?v=20261124d">
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <a class="logo" href="/" aria-label="Revexup, ir al inicio"><img src="/assets/img/favicon.svg" width="34" height="34" alt=""><span>revexup</span></a>
+  <nav class="nav" aria-label="Principal"><a href="/plantillas/">Plantillas</a><a href="/#a-medida">A la medida</a><a href="/guias/">Guías</a><a href="/#preguntas">Preguntas</a></nav>
+  <a class="btn btn-primary btn-sm nav-cta" href="/#a-medida">Pedir demo gratis</a>
+  <details class="menu"><summary aria-label="Abrir menú"><span></span></summary>
+    <div class="menu-panel"><a href="/plantillas/">Plantillas</a><a href="/#a-medida">A la medida</a><a href="/guias/">Guías</a><a href="/#preguntas">Preguntas</a><a class="btn btn-primary" href="/#a-medida">Pedir demo gratis</a></div>
+  </details>
+</div></header>
+<main>
+<section class="hero" style="padding-top:44px"><div class="wrap narrow article">
+<div class="crumbs"><a href="/">Inicio</a> › <a href="/guias/">Guías</a></div>
+<h1>Control de inventario en Excel: entradas, salidas y punto de reorden</h1>
+<p class="fine">Actualizado: 2026-11-24 · Lectura de 5 minutos</p>
+<p>El error que más descuadra un inventario en Excel es <b>sobrescribir la existencia a mano</b>. La forma confiable es otra: no se escribe la existencia, se registran movimientos y Excel calcula la existencia.</p>
+
+<h2>1. Hoja Productos</h2>
+<p>Una tabla (Ctrl + T) llamada <code>Productos</code>:</p>
+<table>
+<thead><tr><th>Clave</th><th>Descripción</th><th>Inicial</th><th>Mínimo</th><th>Existencia</th><th>Estado</th></tr></thead>
+<tbody><tr><td>CAB-12</td><td>Cable THW cal. 12</td><td>40</td><td>10</td><td><i>fórmula</i></td><td><i>fórmula</i></td></tr></tbody>
+</table>
+<p><b>Inicial</b> es lo que contaste el día que empezaste. <b>Mínimo</b> es la cantidad a la que quieres que te avise.</p>
+
+<h2>2. Hoja Movimientos</h2>
+<p>Otra tabla llamada <code>Movimientos</code>, una fila por cada entrada o salida:</p>
+<table>
+<thead><tr><th>Fecha</th><th>Clave</th><th>Tipo</th><th>Cantidad</th><th>Referencia</th></tr></thead>
+<tbody>
+<tr><td>18/11/2026</td><td>CAB-12</td><td>Entrada</td><td>20</td><td>Compra F-881</td></tr>
+<tr><td>20/11/2026</td><td>CAB-12</td><td>Salida</td><td>6</td><td>Venta 0153</td></tr>
+</tbody>
+</table>
+<p>En la columna Tipo pon una lista desplegable (Datos → Validación de datos → Lista → <code>Entrada,Salida</code>) para que nadie escriba "entrda".</p>
+
+<h2>3. Existencia automática</h2>
+<p>En la columna Existencia de <code>Productos</code>:</p>
+<blockquote class="fx"><code>=[@Inicial]+SUMAR.SI.CONJUNTO(Movimientos[Cantidad],Movimientos[Clave],[@Clave],Movimientos[Tipo],"Entrada")-SUMAR.SI.CONJUNTO(Movimientos[Cantidad],Movimientos[Clave],[@Clave],Movimientos[Tipo],"Salida")</code></blockquote>
+<p>Con el ejemplo: 40 + 20 − 6 = 54. Al ser tabla, la fórmula se copia sola a cada producto nuevo.</p>
+
+<h2>4. Aviso de qué reponer</h2>
+<blockquote class="fx"><code>=SI([@Existencia]&lt;=[@Mínimo],"Reponer","OK")</code></blockquote>
+<p>Después, <b>Inicio</b> → <b>Formato condicional</b> → <b>Resaltar reglas de celdas</b> → <b>Texto que contiene</b> → "Reponer", en rojo. Filtra la columna por "Reponer" y tienes tu lista de compras.</p>
+
+<h2>5. Punto de reorden con tu consumo real</h2>
+<p>Un mínimo fijo se queda corto en temporada alta. El punto de reorden se calcula así:</p>
+<blockquote class="fx"><b>Punto de reorden</b> = consumo diario promedio × días que tarda tu proveedor + stock de seguridad</blockquote>
+<p>Consumo diario de los últimos 30 días (agrega una columna <code>Consumo</code> a Productos):</p>
+<blockquote class="fx"><code>=SUMAR.SI.CONJUNTO(Movimientos[Cantidad],Movimientos[Clave],[@Clave],Movimientos[Tipo],"Salida",Movimientos[Fecha],"&gt;="&amp;HOY()-30)/30</code></blockquote>
+<p>Si vendes 2 rollos al día, tu proveedor tarda 5 días y quieres 3 días de colchón: 2 × 5 + 2 × 3 = 16. Cuando la existencia llegue a 16, pide.</p>
+<p>Para usarlo como mínimo automático, en la columna Mínimo escribe <code>=REDONDEAR.MAS([@Consumo]*(5+3),0)</code>, cambiando 5 y 3 por tus días.</p>
+
+<h2>Buenas prácticas</h2>
+<ul>
+<li>Nunca borres movimientos. Si hubo un error, registra un movimiento de ajuste con la referencia "Ajuste por conteo".</li>
+<li>Haz un conteo físico al mes de tus 20 productos que más se mueven y compara con la existencia de Excel.</li>
+<li>Si varias personas capturan a la vez, usa Excel en OneDrive o Google Sheets para no tener copias distintas.</li>
+</ul>
+<div class="cta-box">
+  <h3 style="color:#fff">¿Lo quieres armado con tus productos?</h3>
+  <p>La plantilla de inventario de Revexup trae entradas, salidas, alertas de reposición y valor del inventario. Lista para capturar.</p>
+  <a class="btn btn-hl" href="/plantillas/control-de-inventario-excel/">Ver la plantilla de inventario</a>
+  <a class="btn btn-ghost" href="/#a-medida">Pedir una demo gratis a la medida</a>
+</div>
+<h2>Preguntas frecuentes</h2>
+<h3>¿Por qué no escribir la existencia directamente?</h3>
+<p>Porque no queda rastro: si el número está mal, no sabes cuándo ni por qué. Con movimientos, la existencia siempre se puede explicar.</p>
+<h3>¿Cuántos movimientos aguanta?</h3>
+<p>Decenas de miles sin problema. Si llegas a cientos de miles, conviene archivar los años anteriores en otro archivo.</p>
+<h3>¿Sirve para varios almacenes?</h3>
+<p>Sí: agrega una columna Almacén a Movimientos y un criterio más a SUMAR.SI.CONJUNTO.</p>
+</div></section>
+</main>
+<footer><div class="wrap">
+  <div class="foot-grid">
+    <div class="foot-brand"><a class="logo" href="/" aria-label="Revexup, ir al inicio"><img src="/assets/img/favicon.svg" width="34" height="34" alt=""><span>revexup</span></a>
+      <p>Plantillas y automatizaciones de Excel y Google Sheets para negocios que cotizan, venden y llevan inventario.</p></div>
+    <div><h4>Plantillas</h4><ul>
+      <li><a href="/plantillas/cotizador-excel/">Cotizador</a></li>
+      <li><a href="/plantillas/control-de-inventario-excel/">Inventario</a></li>
+      <li><a href="/plantillas/dashboard-de-ventas-excel/">Reporte de ventas</a></li>
+      <li><a href="/plantillas/">Pack de 3</a></li></ul></div>
+    <div><h4>Guías</h4><ul>
+      <li><a href="/guias/calcular-iva-en-excel/">Calcular el IVA</a></li>
+      <li><a href="/guias/cotizacion-en-excel/">Cotización en Excel</a></li>
+      <li><a href="/guias/inventario-en-excel-formulas/">Inventario con fórmulas</a></li>
+      <li><a href="/guias/">Todas las guías</a></li></ul></div>
+    <div><h4>Contacto</h4><ul>
+      <li><a href="/#a-medida">Pedir una demo gratis</a></li>
+      <li><a data-mail="Consulta Revexup" href="#">Escribir un correo</a></li>
+      <li><a href="/privacidad/">Privacidad y reembolsos</a></li></ul></div>
+  </div>
+  <div class="foot-bottom"><span>© <span id="year">2026</span> Revexup · Desde México para Latinoamérica</span><span>Pagos seguros con PayPal · Sin suscripciones</span></div>
+</div></footer>
+<script src="/assets/js/site.js?v=20261124d" defer></script>
+</body>
+</html>

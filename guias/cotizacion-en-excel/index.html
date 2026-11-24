@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Cómo hacer una cotización en Excel que se llene sola (BUSCARX y BUSCARV, paso a paso)</title>
+<meta name="description" content="Arma en Excel un formato de cotización donde eliges la clave del producto y se llenan solos descripción, precio, descuento, IVA y total. Con BUSCARX y alternativa con BUSCARV.">
+<link rel="canonical" href="https://revexup.com/guias/cotizacion-en-excel/">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Revexup">
+<meta property="og:locale" content="es_LA">
+<meta property="og:title" content="Cómo hacer una cotización en Excel que se llene sola (BUSCARX y BUSCARV, paso a paso)">
+<meta property="og:description" content="Arma en Excel un formato de cotización donde eliges la clave del producto y se llenan solos descripción, precio, descuento, IVA y total. Con BUSCARX y alternativa con BUSCARV.">
+<meta property="og:url" content="https://revexup.com/guias/cotizacion-en-excel/">
+<meta property="og:image" content="https://revexup.com/assets/img/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Article", "headline": "Cómo hacer una cotización en Excel que se llene sola", "description": "Arma en Excel un formato de cotización donde eliges la clave del producto y se llenan solos descripción, precio, descuento, IVA y total. Con BUSCARX y alternativa con BUSCARV.", "inLanguage": "es", "datePublished": "2026-11-24", "dateModified": "2026-11-24", "mainEntityOfPage": "https://revexup.com/guias/cotizacion-en-excel/", "author": {"@type": "Organization", "name": "Revexup", "url": "https://revexup.com/"}, "publisher": {"@type": "Organization", "name": "Revexup", "logo": {"@type": "ImageObject", "url": "https://revexup.com/assets/img/favicon.svg"}}}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://revexup.com/"}, {"@type": "ListItem", "position": 2, "name": "Guías", "item": "https://revexup.com/guias/"}, {"@type": "ListItem", "position": 3, "name": "Cómo hacer una cotización en Excel que se llene sola", "item": "https://revexup.com/guias/cotizacion-en-excel/"}]}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "¿Qué es mejor, BUSCARX o BUSCARV?", "acceptedAnswer": {"@type": "Answer", "text": "BUSCARX, si tu Excel lo tiene (2021 o Microsoft 365): no depende del número de columna y no se rompe si insertas columnas. BUSCARV funciona en cualquier versión."}}, {"@type": "Question", "name": "¿Cuántos productos aguanta el catálogo?", "acceptedAnswer": {"@type": "Answer", "text": "Miles. Excel busca en una tabla de 10,000 filas sin que lo notes."}}, {"@type": "Question", "name": "¿Puedo llevar el folio automático?", "acceptedAnswer": {"@type": "Answer", "text": "Sí, pero necesita una hoja de registro de cotizaciones o una macro. Las plantillas de Revexup lo resuelven sin macros con un registro de folios."}}]}]}</script>
+<script src="/assets/js/config.js" defer></script>
+<script>document.documentElement.classList.add("js")</script>
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<meta name="theme-color" content="#0E6B4F">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Figtree:wght@400;500;600;700;800&family=Fraunces:opsz,wght,SOFT@9..144,500..700,50&family=JetBrains+Mono:wght@500;600&display=swap">
+<link rel="stylesheet" href="/assets/css/main.css?v=20261124d">
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <a class="logo" href="/" aria-label="Revexup, ir al inicio"><img src="/assets/img/favicon.svg" width="34" height="34" alt=""><span>revexup</span></a>
+  <nav class="nav" aria-label="Principal"><a href="/plantillas/">Plantillas</a><a href="/#a-medida">A la medida</a><a href="/guias/">Guías</a><a href="/#preguntas">Preguntas</a></nav>
+  <a class="btn btn-primary btn-sm nav-cta" href="/#a-medida">Pedir demo gratis</a>
+  <details class="menu"><summary aria-label="Abrir menú"><span></span></summary>
+    <div class="menu-panel"><a href="/plantillas/">Plantillas</a><a href="/#a-medida">A la medida</a><a href="/guias/">Guías</a><a href="/#preguntas">Preguntas</a><a class="btn btn-primary" href="/#a-medida">Pedir demo gratis</a></div>
+  </details>
+</div></header>
+<main>
+<section class="hero" style="padding-top:44px"><div class="wrap narrow article">
+<div class="crumbs"><a href="/">Inicio</a> › <a href="/guias/">Guías</a></div>
+<h1>Cómo hacer una cotización en Excel que se llene sola</h1>
+<p class="fine">Actualizado: 2026-11-24 · Lectura de 5 minutos</p>
+<p>Si cada cotización la armas copiando descripciones y buscando precios en otra hoja, esta guía te ahorra ese paso. Al final tendrás un formato donde escribes (o eliges) la clave del producto y la cantidad, y todo lo demás se calcula.</p>
+
+<h2>1. Hoja Catálogo: tus productos en una tabla</h2>
+<p>Crea una hoja llamada <b>Catálogo</b> con estas columnas, un producto por fila:</p>
+<table>
+<thead><tr><th>Clave</th><th>Descripción</th><th>Unidad</th><th>Precio</th></tr></thead>
+<tbody>
+<tr><td>CAB-12</td><td>Cable THW cal. 12, rollo 100 m</td><td>Rollo</td><td>1,890.00</td></tr>
+<tr><td>CON-2</td><td>Contacto doble polarizado</td><td>Pieza</td><td>45.50</td></tr>
+</tbody>
+</table>
+<p>Selecciona cualquier celda de la lista y presiona <b>Ctrl + T</b> (en Mac, <b>Cmd + T</b>) para convertirla en tabla. En la pestaña <b>Diseño de tabla</b>, cámbiale el nombre a <code>Catalogo</code>. La ventaja: cuando agregues productos nuevos al final, las fórmulas los toman solas.</p>
+
+<h2>2. Hoja Cotización: el formato</h2>
+<p>Arriba pon los datos de tu empresa, el cliente, la fecha y el folio. A partir de la fila 12, las partidas:</p>
+<table>
+<thead><tr><th>A</th><th>B</th><th>C</th><th>D</th><th>E</th><th>F</th><th>G</th></tr></thead>
+<tbody><tr><td>Clave</td><td>Descripción</td><td>Unidad</td><td>Precio</td><td>Cantidad</td><td>Desc. %</td><td>Importe</td></tr></tbody>
+</table>
+
+<h2>3. Lista desplegable de claves</h2>
+<p>Selecciona <code>A12:A30</code> → <b>Datos</b> → <b>Validación de datos</b> → Permitir: <b>Lista</b> → Origen:</p>
+<blockquote class="fx"><code>=INDIRECTO("Catalogo[Clave]")</code></blockquote>
+<p>Así nadie escribe una clave que no existe y la lista crece con el catálogo.</p>
+
+<h2>4. Que la descripción, la unidad y el precio salgan solos</h2>
+<p>En Excel 2021 o Microsoft 365, usa <b>BUSCARX</b>. En <code>B12</code>:</p>
+<blockquote class="fx"><code>=SI(A12="","",BUSCARX(A12,Catalogo[Clave],Catalogo[Descripción],"Clave no existe"))</code></blockquote>
+<p>Igual para la unidad (<code>C12</code>) y el precio (<code>D12</code>), cambiando la última columna por <code>Catalogo[Unidad]</code> y <code>Catalogo[Precio]</code>. Copia las tres fórmulas hacia abajo hasta la fila 30.</p>
+<p><b>¿Excel 2016 o 2019?</b> No tiene BUSCARX; usa BUSCARV con el número de columna:</p>
+<blockquote class="fx"><code>=SI(A12="","",SI.ERROR(BUSCARV(A12,Catalogo,2,FALSO),"Clave no existe"))</code></blockquote>
+<p>El <code>2</code> es la columna Descripción; usa <code>3</code> para Unidad y <code>4</code> para Precio. El <code>FALSO</code> es obligatorio: pide coincidencia exacta. Sin él, Excel puede traer el precio de otro producto.</p>
+
+<h2>5. Importe, subtotal, IVA y total</h2>
+<p>En <code>G12</code> (y hacia abajo):</p>
+<blockquote class="fx"><code>=SI(A12="","",D12*E12*(1-F12))</code></blockquote>
+<p>Debajo de las partidas, con la tasa de IVA en una celda (por ejemplo <code>G33</code> = 16 %):</p>
+<blockquote class="fx"><b>Subtotal</b> (G32): <code>=SUMA(G12:G30)</code><br><b>IVA</b> (G34): <code>=REDONDEAR(G32*G33,2)</code><br><b>Total</b> (G35): <code>=G32+G34</code></blockquote>
+<p>¿Dudas con el IVA? Lee <a href="/guias/calcular-iva-en-excel/">cómo calcular el IVA en Excel</a>.</p>
+
+<h2>6. Guardarla en PDF para enviarla</h2>
+<ol>
+<li>Selecciona el área del formato → <b>Diseño de página</b> → <b>Área de impresión</b> → <b>Establecer</b>.</li>
+<li>En <b>Ajustar área de impresión</b>, pon ancho: 1 página.</li>
+<li><b>Archivo</b> → <b>Exportar</b> → <b>Crear PDF</b>. El nombre del archivo puede ser el folio: <code>COT-0153 Ferretería López.pdf</code>.</li>
+</ol>
+
+<h2>Errores típicos</h2>
+<ul>
+<li><b>#N/D en la descripción:</b> la clave tiene un espacio de más. Limpia el catálogo con <code>=ESPACIOS(A2)</code>.</li>
+<li><b>Precios que no cambian:</b> copiaste los valores en vez de las fórmulas. Revisa que <code>D12</code> tenga la fórmula, no un número.</li>
+<li><b>Cotizaciones viejas con precios nuevos:</b> si actualizas el catálogo, las cotizaciones abiertas se recalculan. Guarda cada cotización enviada como PDF o como copia con valores.</li>
+</ul>
+<div class="cta-box">
+  <h3 style="color:#fff">¿Prefieres tenerlo hecho hoy?</h3>
+  <p>El cotizador de Revexup ya trae todo esto, más descuentos por partida, datos del cliente, vigencia y formato listo para PDF. Sin macros.</p>
+  <a class="btn btn-hl" href="/plantillas/cotizador-excel/">Ver el cotizador por USD 15</a>
+  <a class="btn btn-ghost" href="/#a-medida">Pedir una demo gratis a la medida</a>
+</div>
+<h2>Preguntas frecuentes</h2>
+<h3>¿Qué es mejor, BUSCARX o BUSCARV?</h3>
+<p>BUSCARX, si tu Excel lo tiene (2021 o Microsoft 365): no depende del número de columna y no se rompe si insertas columnas. BUSCARV funciona en cualquier versión.</p>
+<h3>¿Cuántos productos aguanta el catálogo?</h3>
+<p>Miles. Excel busca en una tabla de 10,000 filas sin que lo notes.</p>
+<h3>¿Puedo llevar el folio automático?</h3>
+<p>Sí, pero necesita una hoja de registro de cotizaciones o una macro. Las plantillas de Revexup lo resuelven sin macros con un registro de folios.</p>
+</div></section>
+</main>
+<footer><div class="wrap">
+  <div class="foot-grid">
+    <div class="foot-brand"><a class="logo" href="/" aria-label="Revexup, ir al inicio"><img src="/assets/img/favicon.svg" width="34" height="34" alt=""><span>revexup</span></a>
+      <p>Plantillas y automatizaciones de Excel y Google Sheets para negocios que cotizan, venden y llevan inventario.</p></div>
+    <div><h4>Plantillas</h4><ul>
+      <li><a href="/plantillas/cotizador-excel/">Cotizador</a></li>
+      <li><a href="/plantillas/control-de-inventario-excel/">Inventario</a></li>
+      <li><a href="/plantillas/dashboard-de-ventas-excel/">Reporte de ventas</a></li>
+      <li><a href="/plantillas/">Pack de 3</a></li></ul></div>
+    <div><h4>Guías</h4><ul>
+      <li><a href="/guias/calcular-iva-en-excel/">Calcular el IVA</a></li>
+      <li><a href="/guias/cotizacion-en-excel/">Cotización en Excel</a></li>
+      <li><a href="/guias/inventario-en-excel-formulas/">Inventario con fórmulas</a></li>
+      <li><a href="/guias/">Todas las guías</a></li></ul></div>
+    <div><h4>Contacto</h4><ul>
+      <li><a href="/#a-medida">Pedir una demo gratis</a></li>
+      <li><a data-mail="Consulta Revexup" href="#">Escribir un correo</a></li>
+      <li><a href="/privacidad/">Privacidad y reembolsos</a></li></ul></div>
+  </div>
+  <div class="foot-bottom"><span>© <span id="year">2026</span> Revexup · Desde México para Latinoamérica</span><span>Pagos seguros con PayPal · Sin suscripciones</span></div>
+</div></footer>
+<script src="/assets/js/site.js?v=20261124d" defer></script>
+</body>
+</html>

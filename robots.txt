@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /r/
+Disallow: /gracias/
+Disallow: /descargas/
+
+Sitemap: https://revexup.com/sitemap.xml

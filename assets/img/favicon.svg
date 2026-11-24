@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <title>Revexup</title>
+  <rect width="64" height="64" rx="15" fill="#0E6B4F"/>
+  <path fill="#fff" fill-rule="evenodd" d="M15 12h19c8 0 13.5 5 13.5 12.2S42 36.4 34 36.4h-9.6V52H15zM24.4 20v8.6h9.2c2.9 0 4.8-1.7 4.8-4.3S36.5 20 33.6 20z"/>
+  <path fill="#fff" d="M27.6 36.4h10.2l8.6 8.6-6.6 6.6z"/>
+  <rect x="40.5" y="40.5" width="13" height="13" rx="3" fill="#FFD84D" stroke="#0E6B4F" stroke-width="2.6"/>
+</svg>
